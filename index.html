@@ -45,7 +45,7 @@ https://templatemo.com/tm-528-elegance
         <header id="header">
             <div class="container-fluid">
                 <div class="navbar">
-                    <a href="files/CV.pdf" id="logo" title="Download CV" target="_blank">
+                    <a href="files/CV.pdf" id="logo" title="Bigger Resume a.k.a CV. Click to download ..." target="_blank">
                         TheNameIs007 ©
 
                     </a>
@@ -71,7 +71,7 @@ https://templatemo.com/tm-528-elegance
         </header>
 
         <video autoplay muted loop id="myVideo">
-          <source src="images/video-bg.mp4" type="video/mp4">
+          <source src="images/videobg.mp4" type="video/mp4">
         </video>
 
         <div id="fullpage" class="fullpage-default">
@@ -121,7 +121,7 @@ https://templatemo.com/tm-528-elegance
                                             <div class="animate" data-animate="fadeInUp">
                                                 <span>About Me</span>
                                                 <h2>The "More" part of Intro ... </h2>
-                                                <p style="font-size:px">I am a hardworking determined individual who tries to know and learn new things everyday.
+                                                <p style="font-size:14px">I am a hardworking determined individual who tries to know and learn new things everyday.
 Once I find something interesting I go out of my way to know about it.
 I may not know a few things but I definitely want to know about them and as
 I have been taking up responsibilities since High School where I was elected as the Treasurer
@@ -315,7 +315,7 @@ as Einstein said,<br>
                                             <span class="service-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
                                             <h3>Time Series Analyst</h3>
                                             <p style="font-size:12px">Time Series and Business Intelligence with skills in 
-                                            	<ul style="font-size:12px">
+                                            	<ul style="font-size:9px">
                                             		Algorithms:
                                             		<li>RNN</li>
                                             		<li>LSTM</li>
@@ -323,7 +323,7 @@ as Einstein said,<br>
 
 
                                             	</ul>
-                                            	<ul style="font-size:12px">
+                                            	<ul style="font-size:9px">
                                             		Visulalisation
                                             		<li>Tableau</li>
                                             		<li>Advanced Excel</li>
@@ -467,7 +467,7 @@ as Einstein said,<br>
                                             </div>                               
                                     <div class="thumb-inner animate" data-animate="fadeInUp">
                                                 <h4 style="color:white">BioMedical Brain Tumor Classification</h4>
-                                                <p style="color: black; font-size:12px">Multimodal Brain Tumour Classification with RGB SWT Blended Images. Built a custom CNN Classifier for the task. Results compared with VGG-16 and Augmentation. Awaits Publication.</p>
+                                                <p style="color: black; font-size:12px">Multimodal Brain Tumour Classification with RGB SWT Blended Images. Built a custom CNN Classifier for the task. Results compared with VGG-16 and Augmentation. Awaits Publication.<a href="files/PPT.pdf" target="_blank" style="color:blue"> Read the documentation here</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -611,7 +611,7 @@ as Einstein said,<br>
                                         </div>
                                     </div>
                                     <div class="col-md-6 animate" data-animate="fadeInUp">
-                                        <form id="ajax-contact" method="post" action="#">
+                                        <form id="ajax-contact" action= "#" method="post" >
                                             <div class="input-field">
                                                 <input type="text" class="form-control" name="name" id="name" required placeholder="Name">
                                             </div>
@@ -619,11 +619,13 @@ as Einstein said,<br>
                                                 <input type="email" class="form-control" name="email" id="email" required placeholder="Email">
                                             </div>
                                             <div class="input-field">
-                                                <textarea class="form-control" name="message" id="message" required placeholder="Message -- Doesn't work because I am broke and can't afford a web server. Will be up soon enough. Thanks ! 😀"></textarea>
+                                                <textarea class="form-control" name="message" id="message" required placeholder="Message -- Doesn't work because I am broke and can't afford a web server. Will be up soon enough. Thanks ! Till then Mail me. 😀"></textarea>
                                             </div>
-                                            <button class="btn" type="submit">Submit</button>
+                                            <button class="btn" type="submit" >Submit</button>
+
                                         </form>
                                         <div id="form-messages" class="mt-3"></div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -643,7 +645,64 @@ as Einstein said,<br>
                 </ul>
             </div>
         </div>
-    </div>  
+    </div>
+
+
+
+
+
+
+    <script>
+    let saveFile = () => {
+        
+        // Get the data from each element on the form.
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const msg = document.getElementById('message');
+        
+        // This variable stores all the data.
+        let data = 
+            '\r Name: ' + name.value + ' \r\n ' + 
+            'Email: ' + email.value + ' \r\n ' + 
+            'Message: ' + msg.value;
+        
+        // Convert the text to BLOB.
+        const textToBLOB = new Blob([data], { type: 'text/plain' });
+        const sFileName = 'formData.txt';      // The file to save the data.
+
+        let newLink = document.createElement("a");
+        newLink.download = sFileName;
+
+        if (window.webkitURL != null) {
+            newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+        }
+        else {
+            newLink.href = window.URL.createObjectURL(textToBLOB);
+            newLink.style.display = "none";
+            document.body.appendChild(newLink);
+        }
+        if (required(name)){
+            if (required(email)){
+                if(required(message)){
+                    newLink.click(); 
+
+                }
+            }
+        }
+        
+    }
+
+    function required(inputtx) 
+   {
+     if (inputtx.value.length == 0)
+      { 
+         alert("message");      
+         return false; 
+      }     
+      return true; 
+    } 
+    </script>
+
 
     <script src="js/jquery.js"></script>
 
@@ -657,9 +716,12 @@ as Einstein said,<br>
 
     <script src="js/jquery.inview.min.js"></script>
 
-    <script src="js/form.js"></script>
+    <!--<script src="js/form.js"></script>-->
 
     <script src="js/custom.js"></script>
+    <footer>
+    <p>Copyright 2013</p>
+    </footer>
 
   </body>
 </html>

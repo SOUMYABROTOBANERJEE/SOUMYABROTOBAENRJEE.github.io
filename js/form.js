@@ -14,12 +14,14 @@ $(function() {
 		// Serialize the form data.
 		var formData = $(form).serialize();
 
+
 		// Submit the form using AJAX.
 		$.ajax({
 			type: 'POST',
 			url: $(form).attr('action'),
 			data: formData
 		})
+		mail("soumyabroto.banerjee@gmail.com","test from webpage","hello")
 		.done(function(response) {
 			// Make sure that the formMessages div has the 'success' class.
 			$(formMessages).removeClass('bg-danger');
